@@ -1,5 +1,7 @@
 import os
 
+# Centralized configuration for file paths.
+# Using os.path ensures portability and maintainability.
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'output')
 

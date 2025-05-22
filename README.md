@@ -167,3 +167,12 @@ if __name__ == "__main__":
 
 - Cette structure favorise la lisibilité, la réutilisabilité, la testabilité et l’intégration dans un orchestrateur.
 - Chaque étape est modulaire, facilement extensible, et respecte les standards professionnels du data engineering Python
+
+## Key production/data engineering best practices highlighted:
+
+- **Separation of concerns:** Each module and function has a single responsibility.
+- **Reusability:** Functions are generic and can be reused in other pipelines.
+- **Data quality:** Cleaning steps ensure consistent, reliable data for downstream jobs.
+- **Documentation:** Each function is documented for clarity and team collaboration.
+- **Extensibility:** The pipeline is easy to extend with new data sources or analytics.
+- **Python standards:** Code is PEP8-compliant and ready for integration in a professional environment.

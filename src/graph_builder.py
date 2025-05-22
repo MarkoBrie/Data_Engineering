@@ -1,4 +1,9 @@
 def build_mentions_graph(drugs, pubmed, clinical_trials):
+    """
+    Build a graph structure linking drugs to their mentions in publications.
+    - Ensures modularity and separation of concerns.
+    - Facilitates downstream analytics and reporting.
+    """
     graph = []
     for _, drug_row in drugs.iterrows():
         drug_name = drug_row['drug']
