@@ -1,0 +1,145 @@
+[
+  {
+    "drug": "diphenhydramine",
+    "atccode": "A04AD",
+    "mentions": [
+      {
+        "source": "pubmed",
+        "journal": "journal of emergency nursing",
+        "date": "2019-01-01",
+        "title": "a 44-year-old man with erythema of the face diphenhydramine, neck, and chest, weakness, and palpitations"
+      },
+      {
+        "source": "pubmed",
+        "journal": "journal of emergency nursing",
+        "date": "2019-01-01",
+        "title": "an evaluation of benadryl, pyribenzamine, and other so-called diphenhydramine antihistaminic drugs in the treatment of allergy."
+      },
+      {
+        "source": "pubmed",
+        "journal": "the journal of pediatrics",
+        "date": "2019-02-01",
+        "title": "diphenhydramine hydrochloride helps symptoms of ciguatera fish poisoning."
+      },
+      {
+        "source": "clinical_trials",
+        "journal": "journal of emergency nursing",
+        "date": "2020-01-01",
+        "title": "use of diphenhydramine as an adjunctive sedative for colonoscopy in patients chronically on opioids"
+      },
+      {
+        "source": "clinical_trials",
+        "journal": "journal of emergency nursing",
+        "date": "2020-01-01",
+        "title": "phase 2 study iv quzyttirTM (cetirizine hydrochloride injection) vs v diphenhydramine"
+      },
+      {
+        "source": "clinical_trials",
+        "journal": "journal of emergency nursing",
+        "date": "2020-01-01",
+        "title": "feasibility of a randomized controlled clinical trial comparing the use of cetirizine to replace diphenhydramine in the prevention of reactions related to paclitaxel"
+      }
+    ]
+  },
+  {
+    "drug": "tetracycline",
+    "atccode": "S03AA",
+    "mentions": [
+      {
+        "source": "pubmed",
+        "journal": "journal of food protection",
+        "date": "2020-01-01",
+        "title": "tetracycline resistance patterns of lactobacillus buchneri group strains."
+      },
+      {
+        "source": "pubmed",
+        "journal": "american journal of veterinary research",
+        "date": "2020-02-01",
+        "title": "appositional tetracycline bone formation rates in the beagle."
+      }
+    ]
+  },
+  {
+    "drug": "ethanol",
+    "atccode": "V03AB",
+    "mentions": []
+  },
+  {
+    "drug": "atropine",
+    "atccode": "A03BA",
+    "mentions": [
+      {
+        "source": "pubmed",
+        "journal": "the journal of maternal-fetal & neonatal medicine",
+        "date": "2020-01-03",
+        "title": "comparison of pressure betamethasone release, phonophoresis and dry needling in treatment of latent myofascial trigger point of upper trapezius atropine muscle."
+      }
+    ]
+  },
+  {
+    "drug": "epinephrine",
+    "atccode": "A01AD",
+    "mentions": [
+      {
+        "source": "pubmed",
+        "journal": "the journal of allergy and clinical immunology. in practice",
+        "date": "2020-01-02",
+        "title": "the high cost of epinephrine autoinjectors and possible alternatives."
+      },
+      {
+        "source": "pubmed",
+        "journal": "the journal of allergy and clinical immunology. in practice",
+        "date": "2020-01-03",
+        "title": "time to epinephrine treatment is associated with the risk of mortality in children who achieve sustained rosc after traumatic out-of-hospital cardiac arrest."
+      },
+      {
+        "source": "clinical_trials",
+        "journal": "journal of emergency nursing\\xc3\\x28",
+        "date": "2020-04-27",
+        "title": "tranexamic acid versus epinephrine during exploratory tympanotomy"
+      }
+    ]
+  },
+  {
+    "drug": "isoprenaline",
+    "atccode": "6302001",
+    "mentions": [
+      {
+        "source": "pubmed",
+        "journal": "journal of photochemistry and photobiology. b, biology",
+        "date": "2020-01-01",
+        "title": "gold nanoparticles synthesized from euphorbia fischeriana root by green route method alleviates the isoprenaline hydrochloride induced myocardial infarction in rats."
+      }
+    ]
+  },
+  {
+    "drug": "betamethasone",
+    "atccode": "R01AD",
+    "mentions": [
+      {
+        "source": "pubmed",
+        "journal": "the journal of maternal-fetal & neonatal medicine",
+        "date": "2020-01-01",
+        "title": "clinical implications of umbilical artery doppler changes after betamethasone administration"
+      },
+      {
+        "source": "pubmed",
+        "journal": "journal of back and musculoskeletal rehabilitation",
+        "date": "2020-01-01",
+        "title": "effects of topical application of betamethasone on imiquimod-induced psoriasis-like skin inflammation in mice."
+      },
+      {
+        "source": "pubmed",
+        "journal": "the journal of maternal-fetal & neonatal medicine",
+        "date": "2020-01-03",
+        "title": "comparison of pressure betamethasone release, phonophoresis and dry needling in treatment of latent myofascial trigger point of upper trapezius atropine muscle."
+      },
+      {
+        "source": "clinical_trials",
+        "journal": "hopitaux universitaires de geneve",
+        "date": "2020-01-01",
+        "title": "preemptive infiltration with betamethasone and ropivacaine for postoperative pain in laminoplasty or \\xc3\\xb1 laminectomy"
+      }
+    ]
+  }
+]
