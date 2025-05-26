@@ -1,99 +1,131 @@
 # Data Engineering Project Structure & Best Practices
 
-## Poetry Setup
+## 0 a) How to Install Poetry
 
-1. [Install Poetry](https://python-poetry.org/docs/#installation)
-2. Install dependencies:
+1. **Run the official installation command in your terminal:**
+   ```sh
+   curl -sSL https://install.python-poetry.org | python3 -
+   ```
+
+2. **(Optional) Add Poetry to your PATH**  
+   If Poetry is not found after installation, add this to your shell config (`~/.bashrc`, `~/.zshrc`, etc.):
+   ```sh
+   export PATH="$HOME/.local/bin:$PATH"
+   ```
+   Then reload your shell:
+   ```sh
+   source ~/.zshrc
+   ```
+   or
+   ```sh
+   source ~/.bashrc
+   ```
+
+3. **Verify the installation:**
+   ```sh
+   poetry --version
+   ```
+
+For more details, see the [official Poetry documentation](https://python-poetry.org/docs/#installation).
+
+## 0 b) Create virtual Environment
+1. **Install dependencies:**
    ```sh
    poetry install
    ```
-3. Activate the virtual environment:
+2. **Activate the virtual environment:**
    ```sh
    poetry shell
    ```
-4. Run the pipeline:
+   or 
+   ```sh
+   poetry env activate
+   ```
+   
+3. **Run the pipeline:**
    ```sh
    python -m src.pipeline
    ```
 
-## 1. Structure de projet recommandée
+## 1. Project structure
 
 ```text
 project_root/
 │
-├── data/                     # Données brutes (input)
+├── data/                     # Raw data (input)
 │   ├── drugs.csv
 │   ├── pubmed.csv
 │   ├── pubmed.json
 │   └── clinical_trials.csv
 │
-├── src/                      # Code source principal
+├── src/                      # Main source code
 │   ├── __init__.py
-│   ├── config.py             # Paramètres globaux, chemins, etc.
-│   ├── data_loader.py        # Fonctions de chargement des données
-│   ├── data_cleaning.py      # Fonctions de nettoyage
-│   ├── pipeline.py           # Orchestration de la pipeline
-│   ├── graph_builder.py      # Construction du graphe de sortie
-│   └── analysis.py           # Fonctions bonus d’analyse ad-hoc
+│   ├── config.py             # Global parameters, paths, etc.
+│   ├── data_loader.py        # Data loading functions
+│   ├── data_cleaning.py      # Data cleaning functions
+│   ├── pipeline.py           # Pipeline orchestration
+│   ├── graph_builder.py      # Output graph construction
+│   └── analysis.py           # Bonus/ad-hoc analysis functions
 │
-├── tests/                    # Tests unitaires
+├── tests/                    # Unit tests
 │   └── test_data_cleaning.py
 │
-├── output/                   # Résultats générés (output)
+├── output/                   # Generated results (output)
 │   └── drug_mentions_graph.json
 │
-├── requirements.txt          # Dépendances Python
-└── README.md                 # Documentation et instructions
+├── requirements.txt          # Python dependencies
+└── README.md                 # Documentation and instructions
 ```
 
-### Pourquoi cette structure ?
+### Why this structure?
 
-- **Séparation claire des responsabilités** : chaque module a un rôle précis (chargement, nettoyage, pipeline, etc.).
-- **Réutilisabilité** : les fonctions de chargement/nettoyage peuvent être utilisées dans d’autres pipelines.
-- **Facilité d’intégration** : la pipeline principale (`pipeline.py`) peut être appelée facilement par un orchestrateur (Airflow, Luigi, etc.).
-- **Tests** : les modules sont testables indépendamment.
-- **Scalabilité** : structure adaptée à l’ajout de nouvelles étapes ou de nouveaux jeux de données.
-
+- **Clear separation of responsibilities:** Each module has a specific role (loading, cleaning, pipeline orchestration, etc.).
+- **Reusability:** Data loading/cleaning functions can be reused in other pipelines.
+- **Easy integration:** The main pipeline (`pipeline.py`) can be easily called by an orchestrator (Airflow, Luigi, etc.).
+- **Testability:** Modules are independently testable.
+- **Scalability:** The structure is suitable for adding new steps or new datasets.
 ---
 
-## 2. Étapes de data cleansing et bonnes pratiques
+## 2. Data Cleansing Steps and Best Practices
 
 ### Tests
 
-```poetry run pytest tests/test_json_validity.py```
+```sh
+poetry run pytest tests/test_json_validity.py
+```
 
-### a) Chargement des données
+### a) Data Loading
 
-- Utiliser `pandas` pour les CSV, `json` ou `pandas.read_json` pour le JSON.
-- Uniformiser les noms de colonnes si besoin.
-- Gérer les encodages (`utf-8` par défaut).
+- Use `pandas` for CSV files, `json` or `pandas.read_json` for JSON files.
+- Standardize column names if needed.
+- Handle encodings (`utf-8` by default).
 
-### b) Nettoyage
+### b) Cleaning
 
-- Suppression des doublons : éviter les mentions multiples identiques.
-- Gestion des valeurs manquantes : suppression ou imputation selon le contexte.
-- Normalisation des chaînes : tout en minuscule, suppression des espaces superflus, accents, etc.
-- Typage : s’assurer que les dates sont bien au format datetime, les IDs en string/int.
-- Vérification de la cohérence : par exemple, un journal doit toujours avoir un nom non vide.
+- Remove duplicates: avoid multiple identical mentions.
+- Handle missing values: remove or impute as appropriate.
+- Normalize strings: lowercase, remove extra spaces, accents, etc.
+- Typing: ensure dates are in datetime format, IDs as string/int.
+- Consistency checks: e.g., a journal should always have a non-empty name.
 
-### c) Bonnes pratiques Python
+### c) Python Best Practices
 
-- Utilisation de fonctions pures, testables.
-- Documentation (docstrings) systématique.
-- Logging pour le suivi des étapes.
-- Pas de variables globales inutiles.
-- Respect du PEP8.
-- Gestion des exceptions (try/except) pour les I/O.
+- Use pure, testable functions.
+- Systematic documentation (docstrings).
+- Logging for step tracking.
+- No unnecessary global variables.
+- Follow PEP8.
+- Exception handling (`try/except`) for I/O.
 
-### 3. Orchestration de la pipeline
+### 3. Pipeline Orchestration
 
-- Pipeline modulaire : chaque étape (chargement, nettoyage, transformation, export) est une fonction ou une classe.
-- Entrée unique : un point d’entrée (main() ou équivalent) pour faciliter l’appel par un orchestrateur.
-- Paramétrisation : chemins, options, etc. dans un fichier de config.
+- Modular pipeline: each step (loading, cleaning, transforming, exporting) is a function or class.
+- Single entry point: a main function (e.g., `main()`) for easy integration with an orchestrator.
+- Parameterization: paths, options, etc. in a config file.
 
-### 4. Construction du graphe de sortie
+### 4. Output Graph Construction
 
-**Modélisation proposée (exemple de structure JSON) :**
+**Proposed modeling (example JSON structure):**
 
 ```json
 [
@@ -118,16 +150,16 @@ project_root/
 ]
 ```
 
-**Pourquoi ce choix ?**
+**Why this choice?**
 
-- Facile à parcourir pour répondre aux questions analytiques.
-- Permet d’ajouter d’autres sources ou attributs facilement.
-- Structure adaptée à la sérialisation/désérialisation JSON.
+- Easy to navigate for analytical queries.
+- Allows for easy addition of other sources or attributes.
+- Structure is suitable for JSON serialization/deserialization.
 
-## 5. Fonctions d’analyse ad-hoc (bonus)
+## 5. Ad-hoc analysis functions (bonus)
 
-- **Journal mentionnant le plus de médicaments différents** : parcourir le graphe, compter les médicaments par journal.
-- **Médicaments co-mentionnés dans les mêmes journaux (PubMed uniquement)** : filtrer les mentions PubMed, trouver les journaux communs, exclure ceux présents dans Clinical Trials.
+- **Journal mentioning the most different drugs**: go the graph and count the number of unique drugs per journal.
+- **Drugs co-mentioned in the same journals (PubMed only)**: filter PubMed mentions, find common journals, and exclude those present in Clinical Trials.
 
 ## 6. Exemple de pipeline (simplifié)
 
@@ -154,19 +186,19 @@ if __name__ == "__main__":
     main()
 ```
 
-## 7. Pour la volumétrie (question bonus)
+## 7. For Large-Scale Data (bonus question)
 
-- Utiliser des outils adaptés : Spark, Dask, ou Pandas chunking pour traiter les fichiers volumineux.
-- Stockage distribué : S3, HDFS, Azure Blob Storage.
-- Partitionnement : découper les données par date, source, etc.
-- Streaming : ingestion continue si besoin.
-- Optimisation I/O : formats Parquet/ORC plutôt que CSV/JSON.
-- Orchestration robuste : Airflow, Luigi, etc.
+- Use appropriate tools: Spark, Dask, or Pandas chunking to process large files.
+- Distributed storage: S3, HDFS, Azure Blob Storage.
+- Partitioning: split data by date, source, etc.
+- Streaming: continuous ingestion if needed.
+- I/O optimization: use Parquet/ORC formats instead of CSV/JSON.
+- Robust orchestration: Airflow, Luigi, etc.
 
 ## 8. Conclusion
 
-- Cette structure favorise la lisibilité, la réutilisabilité, la testabilité et l’intégration dans un orchestrateur.
-- Chaque étape est modulaire, facilement extensible, et respecte les standards professionnels du data engineering Python
+- This structure promotes readability, reusability, testability, and easy integration with an orchestrator.
+- Each step is modular, easily extensible, and follows professional data engineering standards in Python.
 
 ## Key production/data engineering best practices highlighted:
 
