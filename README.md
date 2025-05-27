@@ -41,11 +41,18 @@ For more details, see the [official Poetry documentation](https://python-poetry.
    ```sh
    poetry env activate
    ```
-   
-3. **Run the pipeline:**
+3. **Run Tests**
+
+```sh
+poetry run pytest tests/test_json_validity.py
+```
+4. **Run the pipeline:**
    ```sh
-   python -m src.pipeline
+   cd src
+   python pipeline
    ```
+
+
 
 ## 1. Project structure
 
@@ -88,11 +95,7 @@ project_root/
 
 ## 2. Data Cleansing Steps and Best Practices
 
-### Tests
 
-```sh
-poetry run pytest tests/test_json_validity.py
-```
 
 ### a) Data Loading
 
