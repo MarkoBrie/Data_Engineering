@@ -49,7 +49,7 @@ poetry run pytest tests/test_json_validity.py
 4. **Run the pipeline:**
    ```sh
    cd src
-   python pipeline
+   python pipeline.py
    ```
 
 
